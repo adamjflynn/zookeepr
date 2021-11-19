@@ -1,36 +1,18 @@
-const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
-
-const fs = require("fs");
-const path = require("path");
-
-const express = require("express");
-const { animals } = require("./data/animals.json");
+const express = require('express');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
-// parse incoming string or array data
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 app.use(express.urlencoded({ extended: true }));
-
-// parse incoming JSON data
-
 app.use(express.json());
+app.use(express.static('public'));
 
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
-
-app.use(express.static("public"));
-
-app.get("/zookeepers", (req, res) => {
-	res.sendFile(path.join(__dirname, "./public/zookeepers.html"));
-});
-
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "./public/index.html"));
-});
+// Use apiRoutes
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 app.listen(PORT, () => {
-	console.log(`API server now on port ${PORT}!`);
+  console.log(`API server now on port ${PORT}!`);
 });

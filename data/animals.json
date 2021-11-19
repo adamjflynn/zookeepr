@@ -180,6 +180,15 @@
         "hungry"
       ],
       "id": "18"
+    },
+    {
+      "name": "Paul",
+      "species": "Penguin",
+      "diet": "piscivore",
+      "personalityTraits": [
+        "loving"
+      ],
+      "id": "19"
     }
   ]
 }
